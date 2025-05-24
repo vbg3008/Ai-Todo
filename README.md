@@ -249,8 +249,9 @@ A full-stack application that allows users to create and manage todos, generate 
 
 4. **CORS Errors**
 
-   - Make sure `CORS_ORIGIN` in backend `.env` matches your frontend URL
-   - Restart the backend server after changing environment variables
+   - The backend is configured to allow requests from any origin (`*`)
+   - If you still get CORS errors, check browser console for specific error messages
+   - For production, consider restricting CORS to specific domains
 
 5. **Backend Connection Issues**
    - Run the health check: `cd backend && npm run test`
@@ -345,7 +346,10 @@ Deploy to other platforms like Heroku, Render, or Vercel:
 - **Environment Variables**: Never commit `.env` files to version control. They contain sensitive API keys.
 - **API Keys**: Keep your API keys secure and rotate them regularly.
 - **Supabase RLS**: Consider enabling Row Level Security (RLS) for production deployments.
-- **CORS**: Configure CORS properly for production to only allow requests from your frontend domain.
+- **CORS**: Currently configured to allow requests from any origin (`*`) for development ease. For production, consider restricting to specific domains:
+  ```javascript
+  origin: ["https://your-frontend-domain.com", "https://your-app.vercel.app"];
+  ```
 
 ## License
 
