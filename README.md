@@ -285,19 +285,60 @@ A full-stack application that allows users to create and manage todos, generate 
 
 ## Deployment
 
-### Backend
+### Backend (Railway - Recommended)
 
-1. Deploy to a service like Heroku, Render, or Railway
-2. Set the environment variables in the deployment platform
+**Quick Deploy to Railway:**
+
+1. **Sign up** at [railway.app](https://railway.app)
+2. **Connect GitHub** and select your repository
+3. **Choose backend folder** as root directory
+4. **Set environment variables** in Railway dashboard:
+   ```
+   NODE_ENV=production
+   GEMINI_API_KEY=your_actual_key
+   SLACK_BOT_TOKEN=your_actual_token
+   SLACK_CHANNEL_ID=your_actual_channel_id
+   CORS_ORIGIN=https://your-frontend-domain.com
+   ```
+5. **Deploy** - Railway will automatically build and deploy
+
+**Railway Configuration:**
+
+- ✅ `railway.toml` included for optimal deployment
+- ✅ Health checks configured at `/health`
+- ✅ Auto-restart on failures
+- ✅ Production environment settings
+
+📖 **Detailed Guide**: See [RAILWAY_DEPLOYMENT.md](./RAILWAY_DEPLOYMENT.md)
+
+### Alternative Backend Deployment
+
+Deploy to other platforms like Heroku, Render, or Vercel:
+
+1. Set environment variables in the platform dashboard
+2. Use `npm start` as the start command
+3. Set health check endpoint to `/health`
 
 ### Frontend
 
-1. Build the frontend:
-   ```
+1. **Build the frontend:**
+
+   ```bash
    cd frontend
    npm run build
    ```
-2. Deploy the `dist` folder to a service like Vercel, Netlify, or Firebase Hosting
+
+2. **Update API URL** in frontend `.env`:
+
+   ```bash
+   VITE_API_URL=https://your-backend.up.railway.app/api
+   ```
+
+3. **Deploy** the `dist` folder to:
+   - **Vercel** (recommended)
+   - **Netlify**
+   - **Firebase Hosting**
+   - **GitHub Pages**
 
 ## Security Considerations
 
