@@ -101,9 +101,22 @@ A full-stack application that allows users to create and manage todos, generate 
    ```
 
 5. Start the backend server:
+
    ```
    npm run dev
    ```
+
+6. Test the backend connection:
+
+   ```
+   npm run test
+   ```
+
+   Or manually check the health endpoints:
+
+   - `http://localhost:5000/` - Basic status
+   - `http://localhost:5000/health` - Detailed health check
+   - `http://localhost:5000/api/health` - API health check
 
 ### Frontend Setup
 
@@ -235,8 +248,15 @@ A full-stack application that allows users to create and manage todos, generate 
    - Ensure you have access to the Gemini API in your region
 
 4. **CORS Errors**
+
    - Make sure `CORS_ORIGIN` in backend `.env` matches your frontend URL
    - Restart the backend server after changing environment variables
+
+5. **Backend Connection Issues**
+   - Run the health check: `cd backend && npm run test`
+   - Check if the server is running on the correct port
+   - Verify no other service is using port 5000
+   - Check the server logs for error messages
 
 ## Design Decisions
 

@@ -24,9 +24,37 @@ app.use(express.json());
 app.use("/api/todos", todoRoutes);
 app.use("/api/summary", summaryRoutes);
 
-// Root route
+// Health check routes
 app.get("/", (req, res) => {
   res.send("Todo Summary Assistant API is running");
+});
+
+app.get("/health", (req, res) => {
+  const healthCheck = {
+    status: "OK",
+    message: "Todo Summary Assistant API is healthy",
+    timestamp: new Date().toISOString(),
+    uptime: process.uptime(),
+    environment: process.env.NODE_ENV || "development",
+    version: "1.0.0",
+    services: {
+      gemini: process.env.GEMINI_API_KEY ? "configured" : "not configured",
+      slack:
+        process.env.SLACK_BOT_TOKEN || process.env.SLACK_WEBHOOK_URL
+          ? "configured"
+          : "not configured",
+    },
+  };
+
+  res.status(200).json(healthCheck);
+});
+
+app.get("/api/health", (req, res) => {
+  res.status(200).json({
+    status: "OK",
+    message: "API is running",
+    timestamp: new Date().toISOString(),
+  });
 });
 
 // Error handling middleware
