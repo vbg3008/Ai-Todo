@@ -78,22 +78,24 @@ A full-stack application that allows users to create and manage todos, generate 
    cp .env.example .env
    ```
 
-4. Edit the `.env` file and add your API keys:
+4. **⚠️ SECURITY WARNING**: Edit the `.env` file and add your **REAL** API keys:
+
+   **NEVER commit real API keys to version control!**
 
    ```
    # Server Configuration
    PORT=5000
 
    # Google Gemini API Key
-   GEMINI_API_KEY=your_gemini_api_key_here
+   GEMINI_API_KEY=your_actual_gemini_api_key_here
 
    # Slack API (Choose one method)
    # Method 1: Bot Token + Channel ID
-   SLACK_BOT_TOKEN=your_slack_bot_token_here
-   SLACK_CHANNEL_ID=your_slack_channel_id_here
+   SLACK_BOT_TOKEN=your_actual_slack_bot_token_here
+   SLACK_CHANNEL_ID=your_actual_slack_channel_id_here
 
    # Method 2: Webhook URL
-   SLACK_WEBHOOK_URL=your_slack_webhook_url_here
+   SLACK_WEBHOOK_URL=your_actual_slack_webhook_url_here
 
    CORS_ORIGIN=http://localhost:5173
    ```
